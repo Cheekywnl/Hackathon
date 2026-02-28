@@ -1,6 +1,6 @@
 import PageTabs from '@/components/page-tabs'
 
-export default function AccountPage() {
+export default function HistoryPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 px-6 py-10 dark:from-slate-900 dark:to-slate-800">
       <main className="mx-auto max-w-5xl">
@@ -10,9 +10,9 @@ export default function AccountPage() {
         </div>
 
         <section className="rounded-xl border border-dashed border-slate-300 bg-white p-8 text-slate-700 shadow-sm dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200">
-          <h2 className="text-3xl font-semibold">Account</h2>
+          <h2 className="text-3xl font-semibold">History</h2>
           <p className="mt-3 text-slate-600 dark:text-slate-300">
-            Blank page scaffold. Add account settings and profile details here.
+            Blank page scaffold. Add previous assessments and timeline features here.
           </p>
         </section>
       </main>
