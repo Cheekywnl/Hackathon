@@ -3,6 +3,7 @@ import { AccountData } from './useAccountData'
 export interface ReviewInput {
   account: AccountData | null
   video?: File | null
+  transcription?: string | null
 }
 
 export interface ReviewFeedback {

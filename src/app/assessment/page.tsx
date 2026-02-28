@@ -31,7 +31,6 @@ export default function AssessmentPage() {
     openCamera,
     startRecording,
     stopRecording,
-    cancelRecording,
     clearAllRecordings,
     activeRecordings,
     errorMessage,
@@ -41,12 +40,13 @@ export default function AssessmentPage() {
   const recording = recordingId ? activeRecordings.find((r) => r.id === recordingId) : null
 
   // Force webcam video to play when stream is ready (helps with "can't see myself" issue)
+  // Only set up once to avoid flashing
   useEffect(() => {
     if ((step === 'preview' || step === 'recording') && recording?.webcamRef.current) {
       const video = recording.webcamRef.current
       const stream = video.srcObject as MediaStream | null
-      if (stream instanceof MediaStream && stream.active) {
-        video.srcObject = stream
+      // Only play if stream exists and video is paused - don't reassign srcObject
+      if (stream instanceof MediaStream && stream.active && video.paused) {
         video.play().catch(() => {})
       }
     }
@@ -142,21 +142,18 @@ export default function AssessmentPage() {
     }
   }
 
-  const handleReset = async () => {
-    clearError()
-    setRecordError(null)
-    if (recordingId) {
-      try {
-        await cancelRecording(recordingId)
-      } catch {
-        await clearAllRecordings()
-      }
-    }
-    await clearAllRecordings()
+  const handleReset = () => {
+    // Reset state immediately (before async cleanup)
     setStep('ready')
     setRecordingId(null)
     setTranscription(null)
     setSubmitError(null)
+    setFeedback(null)
+    setRecordError(null)
+    clearError()
+
+    // Cleanup recordings in background
+    clearAllRecordings().catch(() => {})
   }
 
   const handleSubmit = async () => {
