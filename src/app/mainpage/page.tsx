@@ -17,7 +17,7 @@ export default function MainPage() {
           </p>
           <Link
             href="/assessment"
-            className="rounded-lg bg-emerald-600 px-8 py-3 text-base font-semibold text-white shadow-sm"
+            className="rounded-lg bg-emerald-600 px-8 py-3 text-base font-semibold text-white shadow-sm hover:bg-emerald-700"
           >
             Start Assessment
           </Link>
