@@ -2,32 +2,45 @@
 
 import Link from 'next/link'
 
-export default function LandingPage() {
+const navigationCards = [
+  {
+    href: '/review',
+    title: 'Review Page',
+    description: 'Open the review workspace to inspect and discuss submissions.',
+  },
+  {
+    href: '/account',
+    title: 'Account Page',
+    description: 'Open account settings and profile management (coming soon).',
+  },
+]
+
+export default function MainPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
-      <main className="max-w-3xl mx-auto px-6 py-16">
-        <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
-          Hackathon – AI Startup Interview Evaluator
+      <main className="max-w-4xl mx-auto px-6 py-16" aria-labelledby="main-page-title">
+        <h1 id="main-page-title" className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
+          Main Page
         </h1>
         <p className="text-lg text-slate-600 dark:text-slate-300 mb-8">
-          Get AI-powered feedback on your startup pitch. Record your answer, share your GitHub, and receive scores for technical credibility, pitch clarity, and fundability.
+          Use the widgets below to navigate to the shared pages for collaborative work.
         </p>
-        <div className="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6 mb-8 border border-slate-200 dark:border-slate-700">
-          <h2 className="text-xl font-semibold mb-4">How it works</h2>
-          <ol className="space-y-3 text-slate-600 dark:text-slate-300 list-decimal list-inside">
-            <li><strong>Record your pitch</strong> – Answer a startup question</li>
-            <li><strong>Share your GitHub</strong> – Paste your repository link</li>
-            <li><strong>Get evaluated</strong> – AI compares your pitch against your code</li>
-          </ol>
-        </div>
-        <div className="flex gap-4 flex-wrap">
-          <Link href="/evaluate" className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-lg transition-colors">
-            Start Interview →
-          </Link>
-          <Link href="/demo" className="px-6 py-3 bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-800 dark:text-white font-medium rounded-lg transition-colors">
-            Try Demo Mode
-          </Link>
-        </div>
+        <nav aria-label="Primary navigation">
+          <ul className="grid gap-4 sm:grid-cols-2">
+            {navigationCards.map((card) => (
+              <li key={card.href}>
+                <Link
+                  href={card.href}
+                  className="block h-full rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition hover:border-slate-300 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 dark:border-slate-700 dark:bg-slate-800 dark:hover:border-slate-600"
+                  aria-label={`Go to ${card.title}`}
+                >
+                  <h2 className="text-xl font-semibold text-slate-900 dark:text-white">{card.title}</h2>
+                  <p className="mt-2 text-slate-600 dark:text-slate-300">{card.description}</p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </main>
     </div>
   )
