@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import PageTabs from '@/components/page-tabs'
 
 export default function MainPage() {
@@ -14,13 +15,12 @@ export default function MainPage() {
           <p className="mb-8 max-w-xl text-slate-600 dark:text-slate-300">
             Starter page for your team. Keep this structure and add your own features when you are ready.
           </p>
-          <button
-            type="button"
-            className="rounded-lg bg-emerald-600 px-8 py-3 text-base font-semibold text-white shadow-sm"
-            aria-disabled="true"
+          <Link
+            href="/assessment"
+            className="rounded-lg bg-emerald-600 px-8 py-3 text-base font-semibold text-white shadow-sm hover:bg-emerald-700"
           >
             Start Assessment
-          </button>
+          </Link>
         </section>
       </main>
     </div>
