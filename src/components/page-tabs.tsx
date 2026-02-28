@@ -8,6 +8,7 @@ const tabs = [
   { href: '/account', label: 'Account' },
   { href: '/improvement', label: 'Improvement' },
   { href: '/history', label: 'History' },
+  { href: '/whats_next', label: "What's Next" },
 ]
 
 export default function PageTabs() {
